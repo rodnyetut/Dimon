@@ -186,6 +186,42 @@
             font-variant: small-caps;
         }
 
+        /* QR-код секция */
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .qr-code img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+        
+        .qr-label {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #b0b7c5;
+            text-align: center;
+        }
+
         /* Счетчик времени */
         .timer-section {
             background: #0f1116;
@@ -253,6 +289,7 @@
             .full-name { font-size: 1.9rem; }
             .epitaph { font-size: 1.3rem; }
             .unit-value { font-size: 2rem; }
+            .qr-code { width: 120px; height: 120px; }
         }
     </style>
 </head>
@@ -260,7 +297,7 @@
     <div class="memorial-card">
         <div class="header-section">
             <div class="full-name">БЕЛЯЕВ ДМИТРИЙ НИКОЛАЕВИЧ</div>
-            <div class="dates"><span>07.03.2026</span> Вечность</div>
+            <div class="dates"><span>07.03.2026</span>  Вечность</div>
         </div>
 
         <!-- Леденящая, авторитетная фраза -->
@@ -271,7 +308,7 @@
         <!-- Место под фото -->
         <div class="photo-frame">
             <div class="photo-placeholder">
-                [ ФОТОГРАФИЯ ]
+                
             </div>
             <!-- Для реального фото замените div.photo-placeholder на <img src="путь_к_фото.jpg" alt="Дмитрий Беляев" style="width:100%; height:100%; object-fit:cover;"> -->
         </div>
@@ -286,9 +323,19 @@
             <div style="font-size:0.9rem; margin-top:8px; color:#9a9fb0;">(зажгите / погасите кликом)</div>
         </div>
 
+        <!-- QR-код секция с изображением qrcode.png -->
+        <div class="qr-section">
+            <div class="qr-code">
+                <img src="qrcode.png" alt="QR-код памяти" onerror="this.parentElement.innerHTML='[ qrcode.png не найден ]';this.parentElement.style.background='#333';this.parentElement.style.color='#999';">
+            </div>
+            <div class="qr-label">
+                Сканируйте QR-код<br>чтобы сохранить память
+            </div>
+        </div>
+
         <!-- Счетчик времени с 7 марта 2026 -->
         <div class="timer-section">
-            <div class="timer-title">ТОГО ДНЯ ПРОШЛО </div>
+            <div class="timer-title"> С ТОГО ДНЯ ПРОШЛО </div>
             <div class="time-units" id="timer">
                 <div class="unit">
                     <span class="unit-value" id="days">00</span>
@@ -313,7 +360,8 @@
             Светлая память — это свет, который не гаснет.
         </div>
         <div class="signature">
-                  </div>
+            
+        </div>
     </div>
 
     <script>
@@ -373,6 +421,6 @@
     </script>
 
     <!-- Дополнительно: если хотите использовать шрифт Cinzel для большей торжественности, раскомментируйте строку ниже -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet"> 
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet"> -->
 </body>
 </html>
