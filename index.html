@@ -83,25 +83,43 @@
             letter-spacing: 1px;
         }
 
-        .photo-frame {
-            width: 260px;
-            height: 260px;
+        .video-frame {
+            width: 280px;
+            height: 280px;
             margin: 25px auto;
             border-radius: 20px;
-            background: linear-gradient(145deg, #2c313a, #1a1d24);
+            background: #1a1d24;
             border: 3px solid #d4b04e;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            position: relative;
         }
 
-        .photo-frame img {
+        .memorial-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            pointer-events: none; /* чтобы видео не реагировало на клики */
+        }
+
+        .video-overlay {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #d4b04e;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-family: 'Arial', sans-serif;
+            border: 1px solid #d4b04e;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 2;
         }
 
         .candle-container {
@@ -272,7 +290,7 @@
             .epitaph { font-size: 1.3rem; }
             .unit-value { font-size: 2rem; }
             .qr-code { width: 120px; height: 120px; }
-            .photo-frame { width: 220px; height: 220px; }
+            .video-frame { width: 240px; height: 240px; }
         }
 
         .qr-fallback {
@@ -281,6 +299,18 @@
             padding: 10px;
             text-align: center;
             border-radius: 10px;
+        }
+
+        .video-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #252a33;
+            color: #b5b9c4;
+            font-size: 1rem;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -295,8 +325,18 @@
             «ОН УШЕЛ В ТИШИНУ,<br> НО ГОЛОС ЕГО ОСТАЛСЯ В ВЕТРЕ»
         </div>
 
-        <div class="photo-frame">
-            <img src="photo.jpg" alt="Дмитрий Беляев" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'260\' height=\'260\' viewBox=\'0 0 260 260\'%3E%3Crect width=\'260\' height=\'260\' fill=\'%23252a33\'/%3E%3Ccircle cx=\'130\' cy=\'100\' r=\'50\' fill=\'%233f4858\'/%3E%3Cpath d=\'M50 210 L210 210 L180 130 L80 130 Z\' fill=\'%233f4858\'/%3E%3Ctext x=\'130\' y=\'240\' text-anchor=\'middle\' fill=\'%23b5b9c4\' font-family=\'Arial\' font-size=\'14\'%3EФОТО%3C/text%3E%3C/svg%3E';">
+        <div class="video-frame">
+            <video class="memorial-video" autoplay loop muted playsinline>
+                <source src="gif.mp4" type="video/mp4">
+                <!-- Если видео не загрузится, показываем статичное изображение -->
+                <div class="video-fallback">
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="20" fill="#3f4858"/>
+                        <path d="M20 80 L80 80 L70 50 L30 50 Z" fill="#3f4858"/>
+                    </svg>
+                </div>
+            </video>
+            <div class="video-overlay">вечность</div>
         </div>
 
         <div class="candle-container" id="candleContainer">
@@ -388,6 +428,15 @@
                 }
                 isBurning = !isBurning;
             });
+
+            // Дополнительная проверка для видео на мобильных устройствах
+            const video = document.querySelector('.memorial-video');
+            if (video) {
+                // Убеждаемся, что видео воспроизводится на мобильных
+                video.play().catch(function(error) {
+                    console.log("Автовоспроизведение не удалось:", error);
+                });
+            }
         })();
     </script>
 </body>
