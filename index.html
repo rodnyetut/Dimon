@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Беляев Дмитрий Николаевич | Вечная память</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -34,7 +35,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Авторитетный, мемориальный стиль */
         .header-section {
             text-align: center;
             margin-bottom: 30px;
@@ -64,7 +64,6 @@
             font-style: normal;
         }
 
-        /* */
         .epitaph {
             text-align: center;
             margin: 35px 0;
@@ -84,7 +83,6 @@
             letter-spacing: 1px;
         }
 
-        /* Место под фото */
         .photo-frame {
             width: 260px;
             height: 260px;
@@ -99,26 +97,13 @@
             overflow: hidden;
         }
 
-        .photo-placeholder {
+        .photo-frame img {
             width: 100%;
             height: 100%;
-            background: #252a33;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="40" r="20" fill="%233f4858"/><path d="M20 80 L80 80 L70 50 L30 50 Z" fill="%233f4858"/></svg>');
-            background-size: 60% 60%;
-            background-repeat: no-repeat;
-            background-position: center 40%;
-            opacity: 0.7;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 15px;
-            color: #b5b9c4;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            object-fit: cover;
+            display: block;
         }
 
-        /* Свеча памяти */
         .candle-container {
             display: flex;
             flex-direction: column;
@@ -186,7 +171,6 @@
             font-variant: small-caps;
         }
 
-        /* QR-код секция */
         .qr-section {
             display: flex;
             flex-direction: column;
@@ -222,7 +206,6 @@
             text-align: center;
         }
 
-        /* Счетчик времени */
         .timer-section {
             background: #0f1116;
             border-radius: 60px;
@@ -284,12 +267,20 @@
             text-align: right;
         }
 
-        /* Для маленьких экранов */
         @media (max-width: 500px) {
             .full-name { font-size: 1.9rem; }
             .epitaph { font-size: 1.3rem; }
             .unit-value { font-size: 2rem; }
             .qr-code { width: 120px; height: 120px; }
+            .photo-frame { width: 220px; height: 220px; }
+        }
+
+        .qr-fallback {
+            background: #333;
+            color: #999;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -297,24 +288,17 @@
     <div class="memorial-card">
         <div class="header-section">
             <div class="full-name">БЕЛЯЕВ ДМИТРИЙ НИКОЛАЕВИЧ</div>
-            <div class="dates"><span>07.03.2026</span>  Вечность</div>
+            <div class="dates"><span>07.03.2026</span> — <span>Вечность</span></div>
         </div>
 
-        <!-- Леденящая, авторитетная фраза -->
         <div class="epitaph">
             «ОН УШЕЛ В ТИШИНУ,<br> НО ГОЛОС ЕГО ОСТАЛСЯ В ВЕТРЕ»
         </div>
 
-        <!-- Место под фото -->
         <div class="photo-frame">
-            
-                 <img src="photo.jpg" alt="Дмитрий Беляев" style="width:100%; height:100%; object-fit:cover;"> 
-      
-            </div>
-            <!-- Для реального фото замените div.photo-placeholder на <img src="путь_к_фото.jpg" alt="Дмитрий Беляев" style="width:100%; height:100%; object-fit:cover;"> -->
+            <img src="photo.jpg" alt="Дмитрий Беляев" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'260\' height=\'260\' viewBox=\'0 0 260 260\'%3E%3Crect width=\'260\' height=\'260\' fill=\'%23252a33\'/%3E%3Ccircle cx=\'130\' cy=\'100\' r=\'50\' fill=\'%233f4858\'/%3E%3Cpath d=\'M50 210 L210 210 L180 130 L80 130 Z\' fill=\'%233f4858\'/%3E%3Ctext x=\'130\' y=\'240\' text-anchor=\'middle\' fill=\'%23b5b9c4\' font-family=\'Arial\' font-size=\'14\'%3EФОТО%3C/text%3E%3C/svg%3E';">
         </div>
 
-        <!-- Свеча памяти (интерактивная) -->
         <div class="candle-container" id="candleContainer">
             <div class="candle" id="candle">
                 <div class="wick"></div>
@@ -324,19 +308,17 @@
             <div style="font-size:0.9rem; margin-top:8px; color:#9a9fb0;">(зажгите / погасите кликом)</div>
         </div>
 
-        <!-- QR-код секция с изображением qrcode.png -->
         <div class="qr-section">
             <div class="qr-code">
-                <img src="qrcode.png" alt="QR-код памяти" onerror="this.parentElement.innerHTML='[ qrcode.png не найден ]';this.parentElement.style.background='#333';this.parentElement.style.color='#999';">
+                <img src="qrcode.png" alt="QR-код памяти" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'qr-fallback\'>QR-код временно недоступен</div>';">
             </div>
             <div class="qr-label">
                 Сканируйте QR-код<br>чтобы сохранить память
             </div>
         </div>
 
-        <!-- Счетчик времени с 7 марта 2026 -->
         <div class="timer-section">
-            <div class="timer-title"> С ТОГО ДНЯ ПРОШЛО </div>
+            <div class="timer-title">С ТОГО ДНЯ ПРОШЛО</div>
             <div class="time-units" id="timer">
                 <div class="unit">
                     <span class="unit-value" id="days">00</span>
@@ -358,24 +340,19 @@
         </div>
 
         <div class="candle-message">
-          Спасибо друг,что посетил последний мой приют.Побудь один среди могил, почувствуй ход минут        </div>
-        <div class="signature">
-            
+            Спасибо, друг, что посетил последний мой приют.<br>Побудь один среди могил, почувствуй ход минут.
         </div>
     </div>
 
     <script>
         (function() {
-            // === СЧЕТЧИК ВРЕМЕНИ (от 7 марта 2026, 00:00) ===
-            // Важно: Месяцы в JS отсчитываются с 0 (0 - январь), поэтому 2 = март.
-            const memorialDate = new Date(2026, 2, 7, 0, 0, 0); // 7 марта 2026, полночь
+            const memorialDate = new Date(2026, 2, 7, 0, 0, 0);
 
             function updateTimer() {
                 const now = new Date();
-                const diff = now - memorialDate; // миллисекунды
+                const diff = now - memorialDate;
 
                 if (diff < 0) {
-                    // Если вдруг дата ещё не наступила (маловероятно по условию, но на всякий случай)
                     document.getElementById('days').textContent = '00';
                     document.getElementById('hours').textContent = '00';
                     document.getElementById('minutes').textContent = '00';
@@ -395,32 +372,23 @@
                 document.getElementById('seconds').textContent = secs.toString().padStart(2, '0');
             }
 
-            updateTimer(); // сразу вызываем
-            setInterval(updateTimer, 1000); // обновляем каждую секунду
+            updateTimer();
+            setInterval(updateTimer, 1000);
 
-            // === СВЕЧА ПАМЯТИ (включение/выключение по клику) ===
             const candle = document.getElementById('candle');
             const flame = document.getElementById('flame');
-
-            // По умолчанию свеча горит (показываем пламя)
             let isBurning = true;
 
             candle.addEventListener('click', function(e) {
                 e.stopPropagation();
                 if (isBurning) {
-                    flame.style.display = 'none'; // тушим
+                    flame.style.display = 'none';
                 } else {
-                    flame.style.display = 'block'; // зажигаем
+                    flame.style.display = 'block';
                 }
-                isBurning = !isBurning; // меняем состояние
+                isBurning = !isBurning;
             });
-
-            // Небольшая защита от случайного скрытия пламени через CSS (если кто-то в инспекторе)
-            // но в целом необязательно.
         })();
     </script>
-
-    <!-- Дополнительно: если хотите использовать шрифт Cinzel для большей торжественности, раскомментируйте строку ниже -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet"> -->
 </body>
 </html>
