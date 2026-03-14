@@ -68,10 +68,10 @@
             </div>
         </div>
 
-        <!-- Красивая кнопка локации захоронения -->
+        <!-- Красивая кнопка локации захоронения с воспроизведением музыки -->
         <div style="text-align: center; margin: 30px 0 10px;">
-            <a href="https://yandex.ru/maps/?pt=59.152644,39.929738&z=18&l=map" 
-               target="_blank"
+            <a href="javascript:void(0);" 
+               id="locationButton"
                style="display: inline-flex; align-items: center; justify-content: center; gap: 10px;
                       background: linear-gradient(145deg, #2c3e50, #1a2632);
                       color: #d4af37; text-decoration: none; padding: 14px 30px; 
@@ -79,7 +79,7 @@
                       font-size: 20px; font-weight: 600; letter-spacing: 1px;
                       border: 1px solid rgba(212, 175, 55, 0.3);
                       box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1);
-                      transition: all 0.3s ease;"
+                      transition: all 0.3s ease; cursor: pointer;"
                onmouseover="this.style.background='linear-gradient(145deg, #1a2632, #0f171f)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.4), inset 0 1px 3px rgba(255,255,255,0.2)'; this.style.borderColor='rgba(212,175,55,0.6)';"
                onmouseout="this.style.background='linear-gradient(145deg, #2c3e50, #1a2632)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1)'; this.style.borderColor='rgba(212,175,55,0.3)';">
                 <span style="font-size: 24px;">🕊️</span>
@@ -87,7 +87,15 @@
                 <span style="font-size: 18px;">📍</span>
             </a>
             <div style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #888; margin-top: 10px; font-style: italic;">
-                
+              
+            </div>
+            
+            <!-- Элемент управления музыкой (маленький и незаметный) -->
+            <div style="margin-top: 10px; font-size: 14px; color: #666; display: flex; align-items: center; justify-content: center; gap: 15px;">
+                <span id="musicStatus" style="font-family: 'Cormorant Garamond', serif; font-style: italic;">🎵 Музыка памяти</span>
+                <button id="stopMusic" style="background: none; border: 1px solid #666; color: #666; border-radius: 20px; padding: 5px 15px; font-family: 'Cormorant Garamond', serif; cursor: pointer; font-size: 14px; transition: all 0.3s ease;"
+                        onmouseover="this.style.background='#666'; this.style.color='white';"
+                        onmouseout="this.style.background='none'; this.style.color='#666';">⏹️ Стоп</button>
             </div>
         </div>
 
@@ -111,6 +119,84 @@
         </div>
     </div>
 
+    <!-- Аудио элемент (скрытый) -->
+    <audio id="memorialMusic" preload="auto" loop>
+        <source src="3.wav" type="audio/wav">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
     <script src="script.js"></script>
+    <script>
+        // Дополнительный скрипт для управления музыкой
+        document.addEventListener('DOMContentLoaded', function() {
+            const music = document.getElementById('memorialMusic');
+            const locationBtn = document.getElementById('locationButton');
+            const stopBtn = document.getElementById('stopMusic');
+            const musicStatus = document.getElementById('musicStatus');
+            
+            // Переменная для отслеживания состояния музыки
+            let isMusicPlaying = false;
+            
+            // Функция обновления статуса
+            function updateMusicStatus() {
+                if (isMusicPlaying) {
+                    musicStatus.innerHTML = '🎵 Музыка играет';
+                    musicStatus.style.color = '#d4af37';
+                } else {
+                    musicStatus.innerHTML = '🎵 Музыка памяти';
+                    musicStatus.style.color = '#666';
+                }
+            }
+            
+            // Обработчик для кнопки локации
+            locationBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Запускаем музыку
+                music.play().then(() => {
+                    isMusicPlaying = true;
+                    updateMusicStatus();
+                    
+                    // Открываем карты в новой вкладке через небольшую задержку
+                    setTimeout(() => {
+                        window.open('https://yandex.ru/maps/?pt=59.152644,39.929738&z=18&l=map', '_blank');
+                    }, 300);
+                }).catch(error => {
+                    console.log('Ошибка воспроизведения:', error);
+                    // Если музыка не запустилась, всё равно открываем карты
+                    window.open('https://yandex.ru/maps/?pt=59.152644,39.929738&z=18&l=map', '_blank');
+                });
+            });
+            
+            // Обработчик для кнопки остановки
+            stopBtn.addEventListener('click', function() {
+                music.pause();
+                music.currentTime = 0; // Сбрасываем в начало
+                isMusicPlaying = false;
+                updateMusicStatus();
+            });
+            
+            // Обновляем статус при окончании музыки
+            music.addEventListener('ended', function() {
+                isMusicPlaying = false;
+                updateMusicStatus();
+            });
+            
+            // Обновляем статус при паузе
+            music.addEventListener('pause', function() {
+                isMusicPlaying = false;
+                updateMusicStatus();
+            });
+            
+            // Обновляем статус при воспроизведении
+            music.addEventListener('play', function() {
+                isMusicPlaying = true;
+                updateMusicStatus();
+            });
+            
+            // Начальный статус
+            updateMusicStatus();
+        });
+    </script>
 </body>
 </html>
