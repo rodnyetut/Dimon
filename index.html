@@ -67,12 +67,32 @@
                 </div>
             </div>
         </div>
-        <div>
-   <a href="https://yandex.ru/maps/?pt=59.152644,39.929738&z=18&l=map" target="_blank">📍 Открыть </a>
-</div> 
 
-        <!-- Кнопка Telegram (исправленная-->
-        <div style="text-align: center; margin-top: 30px; padding: 20px 0;">
+        <!-- Красивая кнопка локации захоронения -->
+        <div style="text-align: center; margin: 30px 0 10px;">
+            <a href="https://yandex.ru/maps/?pt=59.152644,39.929738&z=18&l=map" 
+               target="_blank"
+               style="display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+                      background: linear-gradient(145deg, #2c3e50, #1a2632);
+                      color: #d4af37; text-decoration: none; padding: 14px 30px; 
+                      border-radius: 50px; font-family: 'Cormorant Garamond', serif; 
+                      font-size: 20px; font-weight: 600; letter-spacing: 1px;
+                      border: 1px solid rgba(212, 175, 55, 0.3);
+                      box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1);
+                      transition: all 0.3s ease;"
+               onmouseover="this.style.background='linear-gradient(145deg, #1a2632, #0f171f)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.4), inset 0 1px 3px rgba(255,255,255,0.2)'; this.style.borderColor='rgba(212,175,55,0.6)';"
+               onmouseout="this.style.background='linear-gradient(145deg, #2c3e50, #1a2632)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.1)'; this.style.borderColor='rgba(212,175,55,0.3)';">
+                <span style="font-size: 24px;">🕊️</span>
+                <span>МЕСТО УПОКОЕНИЯ</span>
+                <span style="font-size: 18px;">📍</span>
+            </a>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #888; margin-top: 10px; font-style: italic;">
+                Введенское кладбище, г. Вологда
+            </div>
+        </div>
+
+        <!-- Кнопка Telegram -->
+        <div style="text-align: center; margin-top: 20px; padding: 20px 0;">
             <a href="https://t.me/MemorialsSite" 
                style="display: inline-block; background: #0088cc; color: white; 
                       text-decoration: none; padding: 14px 35px; border-radius: 50px; 
@@ -86,11 +106,11 @@
             </a>
           
             <div style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #666; margin-top: 10px;">
-                После прохождения модерации,ваш коментарий появится на сайте
+                После прохождения модерации, ваш комментарий появится на сайте
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
