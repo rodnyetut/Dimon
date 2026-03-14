@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <!-- Красивая кнопка локации захоронения с воспроизведением музыки -->
+        <!-- Красивая кнопка локации захоронения с воспроизведением музыки (Google Maps) -->
         <div style="text-align: center; margin: 30px 0 10px;">
             <a href="javascript:void(0);" 
                id="locationButton"
@@ -87,7 +87,7 @@
                 <span style="font-size: 18px;">📍</span>
             </a>
             <div style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #888; margin-top: 10px; font-style: italic;">
-              
+                Введенское кладбище, г. Вологда
             </div>
             
             <!-- Элемент управления музыкой (маленький и незаметный) -->
@@ -157,14 +157,15 @@
                     isMusicPlaying = true;
                     updateMusicStatus();
                     
-                    // Открываем карты в новой вкладке через небольшую задержку
+                    // Открываем Google Maps в новой вкладке через небольшую задержку
                     setTimeout(() => {
-                        window.open('https://yandex.ru/maps/?pt=59.152644,39.929738&z=18&l=map', '_blank');
+                        // Google Maps ссылка с координатами Введенского кладбища, Вологда
+                        window.open('https://www.google.com/maps/search/?api=1&query=59.152664,39.929738', '_blank');
                     }, 300);
                 }).catch(error => {
                     console.log('Ошибка воспроизведения:', error);
                     // Если музыка не запустилась, всё равно открываем карты
-                    window.open('https://yandex.ru/maps/?pt=59.152664,39.929738&z=18&l=map', '_blank');
+                    window.open('https://www.google.com/maps/search/?api=1&query=59.152664,39.929738', '_blank');
                 });
             });
             
