@@ -67,12 +67,23 @@
                 </div>
             </div>
         </div>
-        <div>
-   <a href="https://yandex.ru/maps/?pt=59.152644,39.929738&z=18&l=map" target="_blank">📍 Открыть на Яндекс Картах</a>
-</div> 
+        
+        <!-- Красивая кнопка места захоронения -->
+        <div style="text-align: center; margin: 30px 0 10px;">
+            <a href="https://yandex.ru/maps/?pt=59.152644,39.929738&z=18&l=map" 
+               target="_blank"
+               class="burial-button">
+                <span class="burial-button-icon">🕊️</span>
+                <span class="burial-button-text">Место захоронения</span>
+                <span class="burial-button-icon">📍</span>
+            </a>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #8a8f99; margin-top: 8px; letter-spacing: 0.3px;">
+                Вологодская область, пос. Молочное
+            </div>
+        </div>
 
-        <!-- Кнопка Telegram (исправленная, без @MemorialsSite на кнопке) -->
-        <div style="text-align: center; margin-top: 30px; padding: 20px 0;">
+        <!-- Кнопка Telegram -->
+        <div style="text-align: center; margin-top: 20px; padding: 20px 0;">
             <a href="https://t.me/MemorialsSite" 
                style="display: inline-block; background: #0088cc; color: white; 
                       text-decoration: none; padding: 14px 35px; border-radius: 50px; 
@@ -86,10 +97,147 @@
             </a>
           
             <div style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #666; margin-top: 10px;">
-                После прохождения модерации,ваш коментарий появится на сайте
+                После прохождения модерации, ваш комментарий появится на сайте
             </div>
         </div>
     </div>
+
+    <style>
+        /* Стили для красивой кнопки места захоронения */
+        .burial-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2634 100%);
+            color: #e6d5b8;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 60px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(230, 213, 184, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 0 0 1px rgba(230, 213, 184, 0.1) inset;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .burial-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(230, 213, 184, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .burial-button:hover {
+            background: linear-gradient(135deg, #1a2634 0%, #0f1a24 100%);
+            color: #f0e5d0;
+            border-color: rgba(230, 213, 184, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.3), 0 0 0 1px rgba(230, 213, 184, 0.2) inset;
+        }
+        
+        .burial-button:hover::before {
+            left: 100%;
+        }
+        
+        .burial-button-icon {
+            font-size: 24px;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease;
+        }
+        
+        .burial-button:hover .burial-button-icon {
+            transform: scale(1.1);
+        }
+        
+        .burial-button-text {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            border-bottom: 1px dotted rgba(230, 213, 184, 0.5);
+            padding-bottom: 2px;
+        }
+        
+        /* Дополнительные улучшения для мемориальной карточки */
+        .memorial-card {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fcf9f2;
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        
+        .full-name {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a2634;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .dates {
+            font-size: 24px;
+            color: #8a8f99;
+            font-weight: 400;
+        }
+        
+        .epitaph {
+            font-size: 24px;
+            color: #3f4858;
+            margin: 30px 0;
+            line-height: 1.5;
+        }
+        
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            background: #1a2634;
+            border-radius: 20px;
+        }
+        
+        .timer-title {
+            font-size: 18px;
+            color: #8a8f99;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .unit-value {
+            font-size: 36px;
+            font-weight: 600;
+            color: #1a2634;
+        }
+        
+        .unit-label {
+            font-size: 14px;
+            color: #8a8f99;
+            text-transform: uppercase;
+        }
+        
+        .candle-container {
+            margin: 30px 0;
+        }
+        
+        .candle-label {
+            font-size: 18px;
+            color: #3f4858;
+            margin-top: 10px;
+        }
+        
+        .candle-hint {
+            font-size: 14px;
+            color: #8a8f99;
+        }
+    </style>
 
     <script src="script.js"></script>
 </body>
